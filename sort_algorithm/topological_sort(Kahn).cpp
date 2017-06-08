@@ -47,16 +47,16 @@ vector<int> topological_sort(list<int>* graph, int nodeNum){
 
 int main(){
 	int nodesNum = 9;
-	list<int> graph[nodesNum];
-	graph[1].push_back(6);
-	graph[1].push_back(8);
-	graph[2].push_back(7);
-	graph[3].push_back(7);
-	graph[4].push_back(2);
-	graph[4].push_back(3);
-	graph[5].push_back(6);
-	graph[8].push_back(2);
-	graph[8].push_back(6);
+	list<int> graph[nodesNum]; 
+	graph[1].push_back(6); // 1->6
+	graph[1].push_back(8); // 1->8
+	graph[2].push_back(7); // 2->7
+	graph[3].push_back(7); // 3->7
+	graph[4].push_back(2); // 4->2
+	graph[4].push_back(3); // 4->3
+	graph[5].push_back(6); // 5->6
+	graph[8].push_back(2); // 8->2
+	graph[8].push_back(6); // 8->6
 	vector<int> result = topological_sort(graph, nodesNum);
 	for(int i=0; i<result.size(); i++) cout << result[i] << " ";
 	cout << endl; 

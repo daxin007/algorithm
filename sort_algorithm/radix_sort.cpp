@@ -27,20 +27,20 @@ void radix_sort(int radix, int *source, int length){
 		for(int j=0; j<radix; j++)// Empty all the bins
 			radixBins[j] = 0; 
 		for(int j=0; j<length; j++){ // Count the number of records in every bins
-			int k = (source[j]/base)%10;
+			int k = (source[j]/base)%radix;
 			radixBins[k]++;
 		}
 		for(int j=1; j<radix; j++) // Allocate the position 
 			radixBins[j] = radixBins[j-1]+radixBins[j];
 		for(int j=length-1; j>=0; j--){ // Collect the data from bins
-			int k = (source[j]/base)%10;
+			int k = (source[j]/base)%radix;
 			collectData[radixBins[k]-1] = source[j];
 			radixBins[k]--;
 		}
 		for(int j=0; j<length; j++){ // Copy to the source array
 			source[j] = collectData[j];
 		}
-		base = base*10;
+		base = base*radix;
 	}
 	delete []collectData;
 	delete []radixBins;
@@ -48,8 +48,8 @@ void radix_sort(int radix, int *source, int length){
 
 int main(){
 	int length = 9;
-	int source[length] = {21, 12, 55, 11, 34, 11, 9, 2, 25};
-	radix_sort(10, source, length);
+	int source[length] = {21, 12, 55, 11, 34, 11, 8, 2, 25};
+	radix_sort(9, source, length);
 	for(int i=0; i<length; i++) cout << source[i] << " ";
 	cout << endl;
 	
